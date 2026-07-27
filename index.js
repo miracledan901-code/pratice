@@ -1,7 +1,7 @@
 const express = require("express");
 const paths = require("path");
 const bcrypt = require("bcrypt");
-const collection = require("./config");
+const collection = require("./config")
 
 const app = express();
 //convert data into json format
