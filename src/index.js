@@ -36,10 +36,10 @@ app.post("/signup", async (req, res) => {
         res.send("User already exists. Please choose a different username.");
         }else {
             // hash the passworld using bcrypt
-            const saltRounds = 10; // Number of salt round for bcrypt
-            const hashedpassworld = await bcrypt.hash(data.password.saltRounds);
+           const saltRounds = 10;
 
-            data.password = hashedpassworld // Replace the hash password with original password
+            const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+            data.password, saltRounds// Replace the hash password with original password
            const userdata = await collection.insertMany(data);
            console.log(userdata);
         }
@@ -74,9 +74,8 @@ app.post("/login", async (req, res) => {
         res.send("wrong password");
     }
 });
+const PORT = process.env.PORT || 5000;
 
-const port = 5000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-})
-
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
